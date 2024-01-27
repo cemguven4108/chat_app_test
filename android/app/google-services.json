@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "87463248206",
+    "project_id": "cembo-chat-v2",
+    "storage_bucket": "cembo-chat-v2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:87463248206:android:ee62ab948354d8a7191e1f",
+        "android_client_info": {
+          "package_name": "com.example.chat_v2_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7c7dtmoyl1ohtob4rWvL-1fF1zpzPgaM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
