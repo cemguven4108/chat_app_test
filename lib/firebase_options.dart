@@ -17,24 +17,15 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -52,11 +43,38 @@ class DefaultFirebaseOptions {
     }
   }
 
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyAsIr-1ypwvxv3r4B1vnX0pToIpwcZvLxk',
+    appId: '1:87463248206:web:840ce89e478e0d2c191e1f',
+    messagingSenderId: '87463248206',
+    projectId: 'cembo-chat-v2',
+    authDomain: 'cembo-chat-v2.firebaseapp.com',
+    storageBucket: 'cembo-chat-v2.appspot.com',
+  );
+
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyB7c7dtmoyl1ohtob4rWvL-1fF1zpzPgaM',
     appId: '1:87463248206:android:ee62ab948354d8a7191e1f',
     messagingSenderId: '87463248206',
     projectId: 'cembo-chat-v2',
     storageBucket: 'cembo-chat-v2.appspot.com',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyCrm7ncOpU1fgZtpmgsaJJUV-R5iIu66yU',
+    appId: '1:87463248206:ios:5685b8d3333a4f7e191e1f',
+    messagingSenderId: '87463248206',
+    projectId: 'cembo-chat-v2',
+    storageBucket: 'cembo-chat-v2.appspot.com',
+    iosBundleId: 'com.example.chatV2App',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyCrm7ncOpU1fgZtpmgsaJJUV-R5iIu66yU',
+    appId: '1:87463248206:ios:f7082b3153075928191e1f',
+    messagingSenderId: '87463248206',
+    projectId: 'cembo-chat-v2',
+    storageBucket: 'cembo-chat-v2.appspot.com',
+    iosBundleId: 'com.example.chatV2App.RunnerTests',
   );
 }
