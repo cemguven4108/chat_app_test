@@ -11,6 +11,7 @@ class RegisterPage extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white70,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -18,15 +19,10 @@ class RegisterPage extends StatelessWidget {
       ),
       body: Center(
         child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(
-                height: size.height * 0.8,
-                width: size.width * 0.9,
-                child: const RegisterForm(),
-              ),
-            ],
+          child: SizedBox(
+            height: size.height * 0.8,
+            width: size.width * 0.9,
+            child: const RegisterForm(),
           ),
         ),
       ),

@@ -35,6 +35,7 @@ class RegisterFormField extends StatelessWidget {
           }
           return null;
         },
+        focusNode: FocusNode(),
         keyboardType: isEmail
             ? TextInputType.emailAddress
             : TextInputType.visiblePassword,

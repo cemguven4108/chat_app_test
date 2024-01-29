@@ -1,5 +1,5 @@
-import 'package:chat_v2_app/api/bloc/user_event.dart';
-import 'package:chat_v2_app/api/bloc/user_state.dart';
+import 'package:chat_v2_app/api/bloc/user_bloc/user_event.dart';
+import 'package:chat_v2_app/api/bloc/user_bloc/user_state.dart';
 import 'package:chat_v2_app/api/service/user_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,11 +10,11 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<UserEventAdd>((event, emit) => _onAdd(event, emit));
   }
 
-  void _onAdd(UserEventAdd event, Emitter<UserState> state) async {
-    //emit(UserStateRegistering());
+  void _onAdd(UserEventAdd event, Emitter<UserState> emit) async {
+    emit(UserStateRegistering());
 
-    final id = await _userService.create(event.data);
+    await _userService.create(event.user);
 
-    //emit(UserStateRegistered(id: id));
+    emit(UserStateRegistered());
   }
 }

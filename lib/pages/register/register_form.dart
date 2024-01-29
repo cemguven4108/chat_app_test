@@ -1,7 +1,11 @@
 import 'dart:io';
 
+import 'package:chat_v2_app/api/bloc/auth_bloc/auth_bloc.dart';
+import 'package:chat_v2_app/api/bloc/auth_bloc/auth_event.dart';
+import 'package:chat_v2_app/api/requests/auth_requests/auth_register_request.dart';
 import 'package:chat_v2_app/pages/register/register_form_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
 class RegisterForm extends StatefulWidget {
@@ -40,46 +44,24 @@ class _RegisterFormState extends State<RegisterForm> {
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
-      child: Expanded(
-        child: Column(
-          children: <Widget>[
-            buildImage(),
-            buildFormFields(),
-            buildFormButton(),
-          ],
-        ),
+      child: Column(
+        children: <Widget>[
+          buildImage(),
+          buildFormFields(),
+          buildFormButton(),
+        ],
       ),
     );
   }
 
   Widget buildImage() {
     if (_selectedImage != null) {
-      return Flexible(
-        child: Stack(
-          alignment: Alignment.topRight,
-          children: <Widget>[
-            CircleAvatar(
-              radius: 90,
-              backgroundImage: FileImage(_selectedImage!),
-            ),
-            IconButton(
-              icon: const Icon(
-                Icons.add,
-                color: Colors.white70,
-              ),
-              onPressed: () => _pickImage(),
-            ),
-          ],
-        ),
-      );
-    }
-    return Flexible(
-      child: Stack(
+      return Stack(
         alignment: Alignment.topRight,
         children: <Widget>[
-          const Icon(
-            Icons.person_outline,
-            size: 100,
+          CircleAvatar(
+            radius: 90,
+            backgroundImage: FileImage(_selectedImage!),
           ),
           IconButton(
             icon: const Icon(
@@ -89,7 +71,23 @@ class _RegisterFormState extends State<RegisterForm> {
             onPressed: () => _pickImage(),
           ),
         ],
-      ),
+      );
+    }
+    return Stack(
+      alignment: Alignment.topRight,
+      children: <Widget>[
+        const Icon(
+          Icons.person_outline,
+          size: 100,
+        ),
+        IconButton(
+          icon: const Icon(
+            Icons.add,
+            color: Colors.white70,
+          ),
+          onPressed: () => _pickImage(),
+        ),
+      ],
     );
   }
 
@@ -140,6 +138,20 @@ class _RegisterFormState extends State<RegisterForm> {
           final result = _formKey.currentState!.validate();
           if (result) {
             _formKey.currentState!.save();
+            context.read<AuthBloc>().add(
+                  AuthEventRegister(
+                    request: AuthRegisterRequest(
+                      fullName: fullNameController.text,
+                      email: emailController.text,
+                      password: passwordController.text,
+                      imageUrl: _selectedImage!.path,
+                    ),
+                  ),
+                );
+            Future.delayed(
+              const Duration(seconds: 2),
+              () => Navigator.of(context).pop(),
+            );
           }
         },
         child: const Text("Register"),

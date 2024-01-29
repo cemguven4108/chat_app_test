@@ -1,4 +1,5 @@
 import 'package:chat_v2_app/pages/login/login_form_field.dart';
+import 'package:chat_v2_app/pages/register/register_page.dart';
 import 'package:flutter/material.dart';
 
 class LoginForm extends StatefulWidget {
@@ -78,8 +79,14 @@ class _LoginFormState extends State<LoginForm> {
           margin: const EdgeInsets.only(right: 20),
           alignment: Alignment.bottomRight,
           child: InkWell(
-            onTap: () {},
-            child: Text(
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const RegisterPage(),
+                ),
+              );
+            },
+            child: const Text(
               "Register?",
             ),
           ),

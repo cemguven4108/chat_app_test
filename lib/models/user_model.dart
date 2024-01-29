@@ -16,14 +16,14 @@ class UserModel {
     required this.isOnline,
     required this.dateCreated,
   });
-  
-    factory UserModel.fromJson(Map<String, dynamic> json) {
+
+  factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
       id: json['id'] as String,
       fullName: json['fullName'] as String,
       email: json['email'] as String,
       biography: json['biography'] as String?,
-      imageUrl: json['imageUrl'] as String,
+      imageUrl: json['imageUrl'] as String?,
       isOnline: json['isOnline'] ?? false,
       dateCreated: json['dateCreate'] as DateTime,
     );

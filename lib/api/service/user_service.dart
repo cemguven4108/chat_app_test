@@ -1,12 +1,15 @@
 import 'package:chat_v2_app/api/repository/user_repository.dart';
+import 'package:chat_v2_app/api/requests/user_requests/user_create_request.dart';
 
 class UserService {
   final UserRepository _userRepository;
 
   UserService(this._userRepository);
 
-  Future<String?> create(Map<String, dynamic> data) async {
-    final user = await _userRepository.create(data);
-    return user.id;
+  Future<String?> create(UserCreateRequest request) async {
+    
+    await _userRepository.create(request.toJson());
+
+    return null;
   }
 }
